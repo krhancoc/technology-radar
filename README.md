@@ -18,10 +18,10 @@ salt=xXyOuRsWeEtSaLtXx
 secretKey=secret
 ```
 
-You can generate a salt by just going into the node terminal in the project root and typing:
+You can generate a salt by going into the Node REPL in the project root:
 
 ```js
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 bcrypt.genSaltSync(10);
 
