@@ -1,0 +1,42 @@
+mixin input_field(type, id, label, cls)
+    - var c = "input-field " + cls;
+    div(class=c)
+        input(type=type id=id name=id required).validate
+        label(for=id).active= label
+
+mixin ring_select()
+    div.col.s6
+        select(required).browser-default#ring
+            option(value="" disabled selected) Choose your Ring
+            option(value="hold") Hold
+            option(value="assess") Assess
+            option(value="trial") Trial
+            option(value="adopt") Adopt
+        label Ring Placement
+
+mixin quadrant_select()
+    div.col.s6
+        select(required).browser-default#quadrant
+            option(value="" disabled selected) Choose your Quadrant
+            option(value="Techniques") Techniques
+            option(value="Languages & Frameworks") Languages & Frameworks
+            option(value="Platforms") Platforms
+            option(value="Tools") Tools
+        label Quadrant Placement
+
+mixin textarea(id)
+    div(style="min-height: 2em; display: none")
+        h6(style="opacity: 0")#saved.confirm Saved!
+    textarea(id=id).container
+
+mixin supportChoice(id, link, name)
+    div.col.s6
+        select(name=id).browser-default#id
+            option(value="" disabled selected) Choose support level
+            option(value="0") 0
+            option(value="1") 1
+            option(value="3") 3
+            option(value="4") 4
+            option(value="5") 5
+        label
+            a(href=link target="_blank")=name

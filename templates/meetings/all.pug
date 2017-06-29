@@ -1,0 +1,8 @@
+extends ../layout.pug
+block content
+    h1 #{title}
+    div.container
+        div.collection
+            each meeting in results
+                - var link = '/radar/meetings/' + meeting.date;
+                a(href=link).collection-item Meeting on #{meeting.date}

@@ -1,0 +1,12 @@
+extends ../layout.pug
+block content
+    div.container
+        h4 #{title}
+            div.collection
+                each meeting in results
+                    - var link = '/radar/meetings/' + meeting.date;
+                    a(href=link).collection-item Meeting on #{meeting.date}
+                else
+                    h6 No meeting contributed to blip
+
+

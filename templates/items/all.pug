@@ -1,0 +1,25 @@
+extends ../layout
+block content
+    h1 All Items
+    div.container
+
+        p.
+            This is a listing of 'all the things' that have ever been 'blipped'
+            in a radar publication sorted by company
+        p.
+            The presence of each
+            ThoughtWorks blip is indicated in our dataset. To respect their
+            intellectual property we link out to
+            their content for the detailed commentary.
+        p.
+            Use the search bar to find what you are looking for.
+        form(method='GET' action='' id='search') Search:
+            input(type="text" name="search" placeholder="Search for an item")
+        - var sorted = Object.keys(results).sort();
+        div.collection
+            each item in sorted
+                - var slug = results[item][0].slug;
+                - var name = '/radar/items/' + slug;
+                a(href=name).collection-item #{item}
+            else
+                h5 No items available

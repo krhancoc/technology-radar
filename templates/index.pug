@@ -1,0 +1,82 @@
+extends layout
+
+block content
+    h1 #{title}
+    div.container !{publication.intro}
+
+    div.container
+        h4.break Understanding Recommendation Labels
+        p.
+            Each 'Blip' on the radar is a reference to something that we think is worth noticing.
+            Beyond being grouped by quadrant (tools, techniques, platforms, languages & frameworks),
+            each blip also resides in a 'ring' representing a recommendation status:
+        ul
+            li.
+                <span>Adopt:</span> We feel strongly that the company should be adopting this item.
+                (This is as close to a 'no brainer' as you can get. You may be
+                ridiculed at the pub if you are not embracing it.)
+            li.
+                <span>Trial:</span> Worth pursuing. It is important for the company to understand how
+                to build up this capability. The company should try this item on a project
+                that can handle the risk.
+            li.
+                <span>Assess:</span> Worth exploring this item with the goal of understanding how it will affect the company.
+            li.
+                <span>Hold:</span> Proceed with caution.
+        p.
+            You'll note that there is no <em>'stop'</em>, <em>'forbidden'</em>, or <em>'never should have done this'</em> category, and
+            for good reason: We wish to fully embrace the ThoughtWorks wisdom that
+            the technology radar is a <em>forward looking metaphor</em>. We won't misuse it to
+            produce recriminations of the past.
+
+        img.radarStatic(src='/radar/static/images/recommend.png')
+
+        h5 Blip Information Fields
+        p.
+            Each blip is listed with its label, quadrant, recommendation, and enthusiasm score.
+        img(width=420 src='/radar/static/images/blip-label.png')
+        h5 Enthusiasm Score
+        p.
+            We've generated an ‘enthusiasm score’ for each blip. Our aim is to produce a numeric
+            indicator of the contributor ‘energy’ around a blip while accounting for the fact that blips may be
+            proposed in meetings of various sizes.
+        p.
+            Enthusiasm score is simply an unbounded, relative integer. The higher the number...
+            You get the idea. Here's what we're doing:
+        pre.
+            Neo4J           Sum of Blip Support
+            Enthusiasm = ------------------------- * 10 * (# non-zero votes)
+            Score        5*(meeting attendee count)
+
+        p.
+            For example, Neo4J was proposed in a meeting with 11 attendees (for a max potential
+            support score of 55). The sum of support for the proposal was 34. Only 9 of the
+            11 people issued non-zero support votes.
+
+        pre.
+                34
+            --------- * 10 * 9 = 56
+                55
+
+        hr
+        h4.section-header Current Radar
+        - var keys = Object.keys(results);
+        each key in keys
+            - var blips = results[key].sort(function(a,b){ return b.support - a.support });
+            h5 #{key}
+            ul(data-collapsible="accordion").collapsible.popout
+                each blip in blips
+                    li
+                        div.collapsible-header
+                            span #{blip.name}
+                            span(style='color: blue; margin-left: 20px') #{blip.quadrant}
+                            span(style='color: red; margin-left: 20px') #{blip.ring}
+                            if blip.support
+                                span(style='color: orange; margin-left:20px') #{blip.support}
+                        div.collapsible-body
+                            p !{blip.description}
+                            -var link = "/radar/blips/" + blip.id;
+                            a.noprint(href=link) Link to Specific Blip
+                            br
+                            -var item = "/radar/items/" + blip.slug;
+                            a.noprint(href=item) Link to Item

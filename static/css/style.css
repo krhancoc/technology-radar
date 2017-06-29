@@ -1,0 +1,261 @@
+
+h1,h2,h3,h4,h5,h6 {
+    color: #336B87;
+}
+
+.btn {
+    background-color: #336B87;
+}
+
+
+form > *, select, option {
+    color: #336B87;
+}
+div.confidential{
+    position: relative;
+    right: -5%;
+    float:right;
+    font-size: 70%;
+}
+
+p.quote{
+    padding: 1ex 5em 1ex 5em;
+    font-family: serif;
+}
+
+@media screen {
+    div#download {
+        -webkit-appearance:button;
+        padding:3px 8px 3px 8px;
+        font-size:13px;
+        cursor: pointer;
+        text-align: center;
+    }
+    p.question {
+        font-weight: bold;
+        padding: 2em 0 0 0;
+    }
+    li > .key:hover {
+        cursor: pointer;
+    }
+
+    li > .toggled, li > .toggled-hover {
+        background-color: #90AFC5;
+    }
+
+    .hidden {
+        display: none;
+    }
+    #info-card {
+        min-width: 200px;
+        border: solid black 1px;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        padding: 0px 10px;
+    }
+
+    .highlight > circle, .highlight > line,.highlight-hover > circle, .highlight-hover > line {
+        stroke: red !important;
+        stroke-width: 2px !important;
+    }
+
+    #graph {
+        position: relative;
+    }
+
+    #graph-legend {
+        float: left;
+        z-index: 10;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+
+    .nav-wrapper {
+        background-color: #2A3132;
+    }
+
+    .page-header, .section-header, .sub-header{
+        text-align: center;
+    }
+
+    div.footer {
+        text-align: center;
+    }
+
+    div.footer p a {
+        margin-right: 1em;
+    }
+
+    img.radarStatic {
+        width: 100%;
+    }
+
+    div.email {
+        border: 1px solid #ccc;
+        font-style: italic;
+        padding: 1em;
+    }
+
+    div.mug {
+        display: inline-block;
+        height: 40px;
+        width: 40px;
+        line-height: 40px;
+        vertical-align: middle;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center center;
+        margin-right: 10px;
+    }
+
+    h1 div.mug {
+        height: 60px;
+        width: 60px;
+        line-height: 60px;
+    }
+
+    .radarTitle {
+        font-size: 70%;
+        margin-right: 1em;
+    }
+
+    img.noscreen {
+        display: none;
+    }
+
+    p, .collapsible-body, .container {
+        color: #203364;
+        font-size: 16px;
+        line-height: 1.6em;
+    }
+
+    .collection a.collection-item {
+        color: #2A3132;
+    }
+
+    h1 {
+        font-size: 36px;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+
+    h3 {
+        font-size: 28px;
+    }
+
+    h4 {
+        font-size: 24px;
+    }
+
+    h5 {
+        font-size: 20px;
+    }
+
+    h6 {
+        font-size: 16px;
+    }
+
+    p a[href^="http://"], a[href^="https://"] {
+        background-position: center right;
+        background-repeat: no-repeat;
+        background-image: url(/radar/static/images/external-link-ltr-icon.png);
+        padding-right: 13px;
+    }
+    li>span{
+        font-weight: bold;
+        font-style: italic;
+    }
+}
+
+@media print {
+    div#download {
+        display: none;
+    }
+    body {
+        font: 12pt Georgia, "Times New Roman", Times, serif;
+        line-height: 1.5;
+    }
+
+    ul#nav-mobile li, .noprint {
+        display: none;
+    }
+
+    img.radarStatic {
+        width: 70%;
+        padding: 0 0 0 15%;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+
+    ul > li > div.collapsible-header {
+        font-weight: bold;
+    }
+
+    ul > li {
+        page-break-inside: inherit;
+    }
+
+    @page :left {
+        margin: 2.5cm;
+    }
+
+    @page :right {
+        margin: 1.8cm;
+    }
+
+    hr {
+        page-break-before: always;
+    }
+
+    h1 {
+        font-size: 18pt;
+    }
+
+    h4 {
+        font-size: 20pt;
+    }
+
+    h4.break {
+        page-break-before: always;
+    }
+
+    p a[href^="http://"]:after, a[href^="https://"]:after {
+        content: " (" attr(href) ")";
+        font-size: 90%;
+        word-wrap: break-word;
+        color: #000;
+    }
+    p a[href^="/"]{
+        text-decoration: none !important;
+        color: #000;
+    }
+
+    img#logo {
+        display: inline;
+        float: left;
+    }
+
+    pre {
+        font-size: 80%;
+        page-break-inside: avoid;
+    }
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+.confirm, .success{
+    color: green;
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+    color: #2A3132;
+}

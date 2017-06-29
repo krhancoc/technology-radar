@@ -1,0 +1,16 @@
+extends ../layout.pug
+block content
+    - var sorted = Object.keys(results).sort();
+    div.container
+        h4 Publications
+        each publisher in sorted
+            div.container
+                h5 #{publisher}
+                div.collection
+                    - var publications = results[publisher];
+                    each pub in publications
+                        - var link = '/radar/publications/' + pub.publisher + '/' + pub.date;
+                        a(href=link).collection-item #{pub.publisher} - #{pub.date}
+                    else
+                        h6 This blip is not attached to any publication
+

@@ -1,0 +1,9 @@
+extends ../layout.pug
+block content
+    h1 #{title}
+    div.collection
+        each person in results
+            - var to_person = '/radar/contributors/' + person.name;
+            a(href=to_person).collection-item #{person.name}
+        else
+            h6 No Contributor proposed this blip.

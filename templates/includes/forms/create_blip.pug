@@ -1,0 +1,43 @@
+include ../mixins.pug
+h3 Propose a Blip
+h4(style="display:none")#error-msg.error
+h4(style="display:none")#success-msg.success
+form(method="post" action="/radar/create/blip")#blip-create.col.s12
+    div.row
+        +input_field("text", "name", "Blip Name", "col s6")
+    div.row
+        +ring_select
+        +quadrant_select
+    div.row
+        +textarea("blip_textarea")
+    div.row
+        input(type="submit" value="Submit").waves-effect.waves-light.btn
+script(src = '/radar/static/js/tinymce/tinymce.min.js')
+script.
+    tinymce.init({
+        selector: 'textarea',
+        height: 250
+    });
+
+    $('#blip-create').on('submit', function (e) {
+        e.preventDefault();
+        var obj = {
+            description: tinyMCE.get("blip_textarea").getContent({format: 'raw'}),
+            name: $('input[name="name"]').val(),
+            ring: $('#ring').val(),
+            quadrant: $('#quadrant').val()
+        }
+        $.post('/radar/create/blip', obj, function (data) {
+            if (data === 201) {
+                $('#success-msg').text("Success!").show();
+                $('input[type="text"]').val('');
+                $('select').val($('select option:first').val());
+                tinyMCE.activeEditor.setContent('');
+            } else {
+                $('#error-msg').text(data).show();
+            }
+        })
+    });
+
+
+

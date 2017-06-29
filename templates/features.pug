@@ -1,0 +1,26 @@
+extends layout
+
+block content
+
+    form(method="POST" action="/radar/features")
+        each feature in Object.keys(features)
+            h6 #{feature}
+            div.switch
+                label Off
+                    input(type="checkbox" name=feature value=feature)
+                    span.lever
+                    span On
+            br
+        input(type="submit" value="Save").btn.waves-effect.waves-light
+
+        script.
+            var features = !{JSON.stringify(features)};
+            var keys = Object.keys(features);
+            for(index in keys) {
+                var key = keys[index] ;
+                if(features[key]) {
+                    $('input[name="' + key + '"]').click();
+                }
+            }
+
+

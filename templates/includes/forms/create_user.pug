@@ -1,0 +1,12 @@
+include ../mixins.pug
+form(method="post" action="/radar/create/user")#user-create.col.s12
+    div.row
+        +input_field("text", "display_name", "Display Name", "col s4")
+        +input_field("email", "email", "Email", "col s4")
+        +input_field("password", "password", "Password","col s4")
+    div.row
+        +input_field("text", "first_name", "First Name","col s6")
+        +input_field("text","last_name","Last Name","col s6")
+    div.row
+        input(type="submit" value="Submit").waves-effect.waves-light.btn
+

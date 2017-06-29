@@ -1,0 +1,20 @@
+extends ../layout.pug
+block content
+    h1 Publications
+    - var sorted = Object.keys(results).sort().reverse();
+    div.container
+        p.
+            The following list of publications includes the biannual Technology
+            Radar publications. We've included
+            ThoughtWorks' blips in our dataset and link out to their descriptions.
+        each publisher in sorted
+            div.container
+                h5 #{publisher}
+                div.collection
+                    - var publications = results[publisher];
+                    - var date_sort = publications.sort(function(a,b) {
+                    - var t = new Date(a.date); var x = new Date(b.date);
+                    - return t > x ? -1 : t < x ? 1 : 0 });
+                    each pub in date_sort
+                        - var link = '/radar/publications/' + pub.publisher + '/' + pub.date;
+                        a(href=link).collection-item #{pub.publisher} - #{pub.date}

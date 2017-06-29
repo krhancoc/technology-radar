@@ -1,0 +1,37 @@
+extends ../layout
+
+block content
+    h3 Create User
+    h4.error(style="display: none; color: red")
+    div.row.popup
+        include ../includes/forms/create_user.pug
+
+    script.
+        $('#user-create').submit(function (e) {
+            e.preventDefault();
+            var d = $(this).serialize();
+            $.post('/radar/create/user',
+            d,
+            function (data) {
+                if (data === 200) {
+                    $.post('/radar/login',
+                    d,
+                    function (data) {
+                        if (data === 200) {
+                            var d = new Date();
+                            d.setTime(d.getTime() + (1000 * 60 * 60 * 24));
+                            document.cookie = "refresh=true; expires=" + d.toUTCString() + ";path=/";
+                            window.self.close();
+                        }
+                        else {
+                            window.self.close();
+                        }
+                    }).fail(function(){
+                        window.self.close();
+                    })
+
+                }
+            }).fail(function () {
+                $('.error').text("User name already taken").show();
+            })
+        });

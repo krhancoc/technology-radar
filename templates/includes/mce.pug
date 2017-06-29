@@ -1,0 +1,38 @@
+script(src = '/radar/static/js/tinymce/tinymce.min.js')
+script.
+    function save() {
+        tinyMCE.triggerSave();
+        var content = tinyMCE.activeEditor.getContent({format: 'raw'});
+        $.ajax({
+            type: 'POST',
+            url: window.location.pathname.replace(/\:\d{4}/, "") + "/save",
+            data: {body: content},
+            success: function (data) {
+                console.log(data);
+            }
+        })
+
+        $('#saved').css('opacity', 1);
+        $('#saved').animate({opacity: 0}, 3000);
+
+    }
+    tinymce.init({
+        selector: 'textarea',
+        height: 500,
+        setup: function (editor) {
+            editor.addMenuItem('save', {
+                text: 'Save',
+                context: 'file',
+                icon: false,
+                onclick: save
+            })
+        }
+    });
+
+    if (window.location.href.includes('edit')) {
+        $('#edit-form').hide();
+        $('#edit-close').show();
+    } else {
+        $('#edit-close').hide();
+        $('#edit-form').show();
+    }

@@ -1,0 +1,9 @@
+extends ../layout.pug
+block content
+    h1
+        div.mug(style='background-image: url( ' + imgUrl + ')' )
+        | #{contributor.displayName || contributor.name}
+    include ../includes/alphabetical_blips
+
+
+

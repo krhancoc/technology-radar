@@ -1,0 +1,67 @@
+extends ../layout
+block content
+    h1 #{title}
+        if Object.keys(results).length > 0
+            - var sorted = Object.keys(results).sort().reverse();
+            - var found = false;
+            each date in sorted
+                -var elem = results[date];
+                each publication in elem
+                    -var publisher = publication.pub.publisher;
+                    -var blip = publication.blip;
+                    -var date = publication.pub.date;
+                    if publisher == 'Sample Company'
+                        if !found
+                            div.container
+                                h2 #{date} - #{publisher}
+                                    span(style='color: blue; margin-left: 20px') #{blip.quadrant}
+                                    span(style='color: red; margin-left: 20px') #{blip.ring}
+                                p !{blip.description}
+                                -var link = "/radar/blips/" + blip.id;
+                                a(href=link) Link to Specific Blip
+                                br
+                                - var radar = '/radar/visualization/?sheetId=publications%2F'+publisher +'%2F'+ date + '%2Fpublished';
+                                a(href=radar).collection-item Link to Radar of this publication
+                            - found = true;
+            if !found
+                -var publication = results[sorted[0]][0];
+                -var publisher = publication.pub.publisher;
+                -var blip = publication.blip
+                -var date = publication.pub.date;
+                div.container
+                    h2 #{date} - #{publisher}
+                        span(style='color: blue; margin-left: 20px') #{blip.quadrant}
+                        span(style='color: red; margin-left: 20px') #{blip.ring}
+                    p !{blip.description}
+                    -var link = "/radar/blips/" + blip.id;
+                    a(href=link) Link to Specific Blip
+                    br
+                    - var radar = '/radar/visualization/?sheetId=publications%2F'+publisher +'%2F'+ date + '%2Fpublished';
+                    a(href=radar).collection-item Link to Radar of this publication
+            - sorted.shift();
+            each date in sorted
+                div.container
+                    h5 #{date}
+                    ul(data-collapsible="accordion").collapsible.popout
+                        - var elem = results[date];
+                        each publication in elem
+                            - var blip = publication.blip;
+                            - var pub = publication.pub;
+                            li
+                                div.collapsible-header
+                                    span #{pub.date} - #{pub.publisher}
+                                        span(style='color: blue; margin-left: 20px') #{blip.quadrant}
+                                        span(style='color: red; margin-left: 20px') #{blip.ring}
+                                        if blip.support
+                                            span(style='color: orange; margin-left:20px') #{blip.support}
+                                div.collapsible-body
+                                    p !{blip.description}
+                                    -var link = "/radar/blips/" + blip.id;
+                                    a(href=link) Link to Specific Blip
+                                    br
+                                    - var radar = '/radar/visualization/?sheetId=publications%2F'+ pub.publisher +'%2F'+ pub.date + '%2Fpublished';
+                                    a(href=radar).collection-item Link to Radar of this publication
+        else
+            h1 No publication info on this blip, so item tracking is disabled.
+
+

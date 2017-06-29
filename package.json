@@ -1,0 +1,47 @@
+{
+  "name": "technology-radar",
+  "author": "Kenneth R Hancock",
+  "version": "0.5.0",
+  "lisence": "WTFPL",
+  "scripts": {
+    "start": "node app.js",
+    "test": "mocha",
+    "lint": "lab -dL",
+    "test-cov-html": "istanbul cover _mocha -- -R spec; open coverage/lcov-report/index.html",
+    "create-docs": "jsdoc -r ./bin  ./README.md ./routes -d docs",
+    "open-docs": "open ./docs/index.html",
+    "dev": "nodemon -e js,pug,css app.js | pino",
+    "neo-local": "export NEO4J_INFO=http://neo4j:test1234@localhost:7687 ; mkdir -p $HOME/neo4j/radar-data || true ; mkdir -p $HOME/neo4j/logs || true ; mkdir -p $HOME/neo4j/plugins || true ; docker run -it --rm --publish=7474:7474 --publish=7687:7687 --volume=$HOME/neo4j/radar-data:/conf --volume=$HOME/neo4j/radar-data:/data --volume=$HOME/neo4j/logs:/logs --volume=$HOME/neo4j/plugins:/plugins neo4j:latest",
+    "neo-local-no-login": "export NEO4J_INFO=http://neo4j:test1234@localhost:7687 ; docker run --publish=7474:7474 --publish=7687:7687 --volume=$HOME/neo4j/data:/data --volume=$HOME/neo4j/logs:/logs --volume=$HOME/neo4j/plugins:/plugins neo4j:latest",
+    "win-neo-local-no-login": "docker run --publish=7474:7474 --publish=7687:7687 neo4j:latest",
+    "start-forever": "forever start --append --uid \"neo-driver\" app.js",
+    "stop-forever": "forever stop neo-driver"
+  },
+  "dependencies": {
+    "accept": "^2.1.3",
+    "bcryptjs": "^2.4.3",
+    "boom": "^4.3.1",
+    "d3": "^4.7.4",
+    "dotenv": "^4.0.0",
+    "hapi": "^16.1.1",
+    "hapi-auth-jwt2": "^7.2.4",
+    "hapi-pino": "^1.4.1",
+    "hapi-swagger": "^7.7.0",
+    "inert": "^4.2.0",
+    "joi": "^10.4.1",
+    "neo4j-driver": "^1.2.0",
+    "njwt": "^0.4.0",
+    "pug": "^2.0.0-beta11",
+    "url": "^0.11.0",
+    "vision": "^4.1.1",
+    "wreck": "^12.0.0"
+  },
+  "devDependencies": {
+    "code": "^4.0.0",
+    "mocha": "^3.2.0",
+    "istanbul": "^0.4.5"
+  },
+  "config": {
+    "openPort": 3000
+  }
+}

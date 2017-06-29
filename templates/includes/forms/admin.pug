@@ -1,0 +1,91 @@
+include ../mixins.pug
+h3 Admin Panel
+div.container
+    if blips.length !== 0
+        h4 Create or Add To Meetings
+        form(method="POST" action="/radar/create/meeting/")#meeting-form
+            div.row
+                +input_field("date", "date", "Date of Meeting", "col s6")
+            div.row
+                div.container
+                    h5 Attach Blips
+                    - for(var i = 0; i < blips.length; i += 2)
+                        div.row
+                        - for(var t = i; t < i+2; t++)
+                            - if(t >= blips.length) break;
+                            - var blip = blips[t];
+                            +input_field("checkbox", blip.id, blip.name, "col s6")
+            div.row
+                div.container
+                    h5 Who attended?
+                    - for(i = 0; i < people.length; i += 2)
+                        div.row
+                        - for(t = i; t < i+2; t++)
+                            - if(t >= people.length) break;
+                            - var person = people[t];
+                            +input_field("checkbox", person.id, person.displayName, "col s6")
+            div.row
+                input(type="submit" value="Submit").waves-effect.waves-light.btn
+    else
+        h6 No blips to create meeting...
+
+hr
+
+div.container
+    if meetings.length !== 0
+        h4 Create Publication
+        form(method="POST" action="/radar/create/publication")#publication-form
+            div.row
+                +input_field("month", "date", "Date of Publication", "col s6")
+            div.row
+                h6 Introduction
+                +textarea("ptextarea")
+                input(type="hidden" name="publication_textarea" id="publication_textarea")
+                h6#intro-error.error(style = "display: none;")
+            div.row
+                div.container
+                        h5 Attach Meetings
+                        - for(i = 0; i < meetings.length; i += 2)
+                            div.row
+                            - for(t = i; t < i+2; t++)
+                                - if(t >= meetings.length) break;
+                                - var meeting = meetings[t];
+                                +input_field("checkbox", meeting.id, meeting.date, "col s6")
+            div.row
+                input(type="submit" value="Submit").waves-effect.waves-light.btn
+    else
+        h6 No meetings available...
+
+script.
+    tinymce.init({
+        selector: 'textarea',
+        height: 250,
+    });
+
+    $('#meeting-form').on('submit', function(e){
+        e.preventDefault();
+        $.post('/radar/create/meeting', $(this).serialize(), function(data){
+            if(data == 201) {
+                location.reload();
+            } else {
+
+            }
+        });
+    });
+
+    $('#publication-form').on('submit', function (e) {
+        e.preventDefault();
+        var val = $('#publication_textarea').val(tinyMCE.get('ptextarea').getContent({format: 'raw'}));
+        if(val.length == "") {
+            $('#intro-error').text("Please add an introduction").show()
+        } else {
+            $.post('/radar/create/publication', $(this).serialize(), function (data) {
+            if (data == 200) {
+                location.reload();
+            } else {
+                console.log('ERROR');
+            }
+        });
+        }
+
+    });

@@ -1,0 +1,9 @@
+extends ../layout
+block content
+    h1 Contributed to Publication(s)
+    div.collection
+        each pub in results
+            - var to_pub= '/radar/publications/' + pub.publisher + '/' + pub.date;
+            a(href=to_pub).collection-item #{pub.publisher} #{pub.date}
+        else
+            h6 No publication has been made from this meeting yet.

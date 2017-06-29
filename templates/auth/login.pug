@@ -1,0 +1,32 @@
+extends ../layout
+
+block content
+    div.container(style="padding: 5em 5em;").popup
+        if !auth.isAuthenticated
+            h6.error(style="display: none; color: red;") Improper Credentials
+            form(method='post' action='/radar/login')#login-form
+                | Username:
+                input(type="text" name="display_name")
+                | Password:
+                input(type="password" name="password")
+                input(type="submit" value="Submit").waves-effect.waves-light.btn
+
+            if !features['login']
+                a(href="/radar/create/user?popup=true").right Create Account
+        else
+            div.container
+                h2 Already logged in
+
+    script.
+        $('#login-form').submit(function (e) {
+            e.preventDefault();
+            $.post('/radar/login', $(this).serialize(),
+                function (data) {}
+            ).fail(function () {
+                $('.error').show();
+            }).done(function(){
+                window.close();
+            });
+        });
+
+

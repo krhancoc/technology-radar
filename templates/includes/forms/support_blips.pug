@@ -1,0 +1,26 @@
+include ../mixins.pug
+div.container
+    if unsupported
+        h3(style="margin-bottom: 15px;") Choose Blips to Support
+        h3.error
+        h3.success
+        form(method="POST" action="/radar/create/support")#support-blips
+            each blip in unsupported
+                div.row
+                    +supportChoice(blip.id, "/radar/blips/" + blip.id, blip.name)
+            input(type="submit" value="Submit").waves-effect.waves-light.btn
+        script.
+            $('#support-blips').on('submit', function (e) {
+                e.preventDefault();
+                $.post('/radar/create/support', $(this).serialize(), function (data) {
+                    if (data == 201) {
+                        location.reload();
+                    } else {
+                        $('.error').text("Error").show();
+                    }
+                })
+            });
+
+    else
+        h4 Nothing to support!
+

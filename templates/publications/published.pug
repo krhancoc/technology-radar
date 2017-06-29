@@ -1,0 +1,27 @@
+extends ../layout.pug
+block content
+    h1 #{title}
+    div.content
+        p.
+            The blips listed below were included in this publication.
+            
+    form(method='GET' action='' id='search') Search:
+        input(type="text" name="search" placeholder="Search a quadrant like Tools, or a ring like Hold, or search for a specific name")
+    - var sorted = Object.keys(results).sort();
+    each letter in sorted
+        div.container
+            h5 #{letter}
+            ul(data-collapsible="accordion").collapsible.popout
+                - var blips = results[letter];
+                each blip in blips
+                    li
+                        div.collapsible-header
+                            span #{blip.name}
+                            span(style='color: blue; margin-left: 20px') #{blip.quadrant}
+                            span(style='color: red; margin-left: 20px') #{blip.ring}
+                            if blip.support
+                                span(style='color: orange; margin-left:20px') #{blip.support}
+                        div.collapsible-body
+                            p !{blip.description}
+                            -var link = "/radar/blips/" + blip.id;
+                            a(href=link) Link to Specific Blip

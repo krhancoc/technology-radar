@@ -1,0 +1,11 @@
+extends ../layout
+block content
+    div.container
+        h1 Meetings Contributing to Publication
+        div.collection
+            each meeting in results
+                - var to_meeting= '/radar/meetings/' + meeting.date;
+                a(href=to_meeting).collection-item Meeting - #{meeting.date}
+            else
+                h6 No Meeting Contributed to this Publication
+

@@ -1,0 +1,51 @@
+extends ../layout.pug
+block content
+    - var cn   = contributor.name;
+    - var name = contributor.name;
+    h1
+        div
+        | #{contributor.displayName || contributor.name}
+    if features['profile']
+        - var check_if_profile = auth.isAuthenticated && (auth.credentials.name === name)
+        if check_if_profile
+            nav
+                div.nav-wrapper
+                    ul
+                        li
+                            a(href="#create_blip").tab Propose
+                        li
+                            a(href="#support_blip").tab Support
+                        if auth.credentials.group == "admin"
+                            li
+                                a(href="#admin").tab Admin
+            div#create_blip.tab-content.container
+                include ../includes/forms/create_blip.pug
+            div(style="display:none;")#support_blip.tab-content.container
+                include ../includes/forms/support_blips.pug
+            if auth.credentials.group == "admin"
+                div(style="display:none;")#admin.tab-content.container
+                    include ../includes/forms/admin.pug
+
+
+    div.collection
+        - var proposed = '/radar/contributors/' + name + '/proposed';
+        a(href=proposed).collection-item Blips Proposed
+        - var attended = '/radar/contributors/' + name +'/attended';
+        a(href=attended).collection-item Meetings Attended
+        - var attended = '/radar/contributors/' + name +'/supported';
+        a(href=attended).collection-item Blips Supported
+    script.
+
+        $('.tab').on('click', function (e) {
+            location.reload();
+        });
+
+        $(document).ready(function (e) {
+            $('.tab-content').hide();
+            if(window.location.hash) {
+                $(window.location.hash).show();
+            } else {
+                $('#create_blip').show();
+            }
+        })
+

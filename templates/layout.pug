@@ -1,0 +1,113 @@
+//- layout.pug
+
+doctype html
+html
+    head
+        title #{title}
+        script(type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js")
+        link(href='/radar/static/css/materialize.css' rel='stylesheet' type='text/css' media="screen,projection")
+        link(href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+        link(href='/radar/static/css/style.css' rel='stylesheet' type='text/css')
+        link(rel='icon' href='/radar/static/images/favicon.ico')
+        script.
+            if (top != self) {
+                top.onbeforeunload = function () {
+                };
+                top.location.replace(self.location.href);
+            }
+    body
+        - var check = typeof(auth) !== "undefined" ? auth.isAuthenticated : false;
+        ul#actions.dropdown-content
+            li
+                a(href="/radar/publications") Publications
+            li
+                a(href="/radar/meetings") Meetings
+            li
+                a(href="/radar/contributors") Contributors
+            li
+                a(href="/radar/items") Items
+            li
+                a(href="/radar/faq") FAQ
+        nav
+            div.nav-wrapper
+                a(href="/radar").brand-logo.right
+                    span.noprint(class="radarTitle") Radar
+                ul#nav-mobile
+                    li
+                        a(href="#!" data-activates="actions").dropdown-button Actions
+                            i.material-icons.right arrow_drop_down
+
+                    if features['profile']
+                        if check
+                            li
+                                - var profile = "/radar/contributors/" + auth.credentials.name;
+                                a(href=profile) Profile
+                    li
+                        if check
+                            a(href="javascript:void(0);" onClick="logout()")#logout Logout
+                        else
+                            a(href="javascript:void(0);" onClick="login()")#login Login
+
+        div.container.content
+            block content
+            div.footer.container.noprint
+                p
+                    a(href='https://github.com/krhancoc/technology-radar' target='_blank') Project Source Code
+                    a(href='/radar/api') API Docs (SwaggerUI)
+            div.confidential
+        script.
+            $(document).ready(function () {
+                if (window.location.href.includes('popup')) {
+                    $('div, nav').not('.content, .popup > div, .popup, form > div, .input-field').hide();
+                }
+            });
+        script(type="text/javascript" src="/radar/static/js/materialize.min.js")
+
+        script.
+            function getCookie(cname) {
+                var name = cname + "=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+
+            function delete_cookie(name) {
+                document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            }
+
+            function checkCookie(name) {
+                var cookie = getCookie(name);
+                if (cookie === "true") {
+                    delete_cookie(name);
+                    location.reload();
+                }
+            }
+
+            function login() {
+                var login_window = window.open('/radar/login?popup=true', 'Login', 'width=750,height=500');
+                login_window.onunload = function () {
+                    location.reload();
+                };
+            }
+
+            function logout() {
+                var logout_window = window.open('/radar/logout?popup=true', 'Login', 'width=100,height=100');
+                logout_window.onload = function () {
+                    this.close();
+                };
+                logout_window.onunload = function () {
+                    location.reload();
+                };
+            }
+
+            setInterval(function () {
+                checkCookie("refresh");
+            }, 1000);

@@ -1,0 +1,10 @@
+extends ../layout.pug
+block content
+    h1 #{title}
+    div.collection
+        - var proposed = '/radar/meetings/' + results[0].date + '/proposed';
+        a(href=proposed).collection-item Blips proposed at this meeting
+        - var contributed = '/radar/meetings/' + results[0].date + '/contributed';
+        a(href=contributed).collection-item The radar this meeting contributed to
+        - var attended= '/radar/meetings/' + results[0].date + '/attended';
+        a(href=attended).collection-item Information about who attended this meeting

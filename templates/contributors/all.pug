@@ -1,0 +1,15 @@
+extends ../layout.pug
+block content
+    h1 #{title}
+    div.content
+        p.
+            A 'contributor' is someone who has attended a radar meeting and
+            offered their opinions and indications of support to proposed blips.
+            It is not necessary for a contributor to have proposed a blip in
+            order to participate in the radar generation process. 
+    div.collection
+        each person in results
+            - var to_person = '/radar/contributors/' + person.name;
+            a(href=to_person).collection-item
+               div
+               | #{person.displayName || person.name} - #{person.title}
