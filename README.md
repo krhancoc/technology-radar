@@ -5,14 +5,23 @@ Contributor & Maintainer: [Kenneth R Hancock](https://github.com/krhancoc)
 Contributor: [Mark Miller](https://github.com/momiller121)  
 
 
-The project was created to be a technology radar data store and to facilitate participation transparency and communication. Mark Miller acted as my Product Owner and was an incredible mentor to have during the process of me learning of Node and Hapi.
+The project was created to be extend the technology radar and to facilitate participation, transparency and communication. Mark Miller acted as my Product Owner and was an incredible mentor to have during the process of learning of Node and HapiJS.
 
 The purpose of this project is to create an API that interacts with the Neo4J graph database in relation to creating and building technology radars.  It increases the abilities of the Thoughtworks open source project [build-your-own-radar](https://github.com/thoughtworks/build-your-own-radar) by wrapping the project in its own API, this allows for a more fluid interaction with the radars.  The goal being to create a fully transparent Radar with one interface.
+
+
+## Feature Toggling
+
+When starting the server you can easily turn features on and off using the /radar/features path.
+
+Feature toggling is apart of this project, features are tracked on requests by attaching cookies.  Current features that are toggleable are:
+* **Login** - By turning off will use a default authentication method.
+* **Profile** -- Turning on will allow for creation of blips, meetings, and publications through users profile screen.
 
 ## Note Before Running:
 Please note that the application uses a .env file located on the server to pull things like the SALT used for creation of user hashes, the secret key use for decryption, and company name etc.  Your .env should look something like this:
 ```
-NEO4J_INFO=http://radar:[password]@[server]:7687
+NEO4J_INFO=http://[user]:[password]@[server]:7687
 company='Sample Company'
 salt=xXyOuRsWeEtSaLtXx
 secretKey=secret
@@ -37,7 +46,7 @@ You can then just copy and paste that into your .env file
 
 You will need to have the [APOC plugin](https://guides.neo4j.com/apoc) added to your plugins folder in NEO4J to load scraped data.
 
-Because of the nature of NEO4J, it allows you to pull in data through csv but only from a server.  I did this by starting up a server in the test_resources folder using the http-server library.  Do not use the local host ip 127.0.0.1.  The data was the initial scrape off the Thoughtworks website, so if you'd like to fill it with their data you can just use the following
+Because of the nature of NEO4J, it allows you to pull in data through csv but only from a server.  I did this by starting up a server in the test_resources folder using the http-server library.  Do not use the local host ip 127.0.0.1 as an argument to the restart.js function.  The data was the initial scrape of the Thoughtworks website, so if you'd like to fill it with their data you can just use the following
 
 ```sh
 
@@ -49,7 +58,7 @@ http-server .
 
 node restart.js <ip_address>:<port>
 ```
-**NOTE**: Please note that this will delete all data on the server as well.  You can just remove the set to delete all the data if you'd like, but be wary - this will cause data duplication if you are just re adding all the Thoughtworks data again.
+**NOTE**: Please note that this will delete all data on the server as well if the restart.js file is unchanged.
 
 ## Develop:
 
@@ -68,7 +77,7 @@ nodemon -e js,pug,css app.js
 
 ## Run:
 
-For the Neo4J database itself I just ran a Neo4J docker container.
+For the Neo4J database itself I just ran a Neo4J docker container. Using volumes to keep plugins and data persistent through different containers.
 
 ```sh
 npm run dev
@@ -204,8 +213,6 @@ This being my first attempt at a project with HapiJS, I am happy with the outcom
 ---
 
 Still lots of stuff I want to add.  But hopefully by open sourcing it I can get suggestions of features others would like to see!  I'm really enjoying this project and hopefully there are others that can find value in a tool like this.
-
-Going to be adding the modified project for the radar pretty soon here -- just scraping through it!
 
 **Resources Used:** This project uses, [Materialize](http://materializecss.com/) for css structure, and the [HapiJS](https://hapijs.com/) framework. And base project inspired by [build-your-own-radar](https://github.com/thoughtworks/build-your-own-radar)!
 
