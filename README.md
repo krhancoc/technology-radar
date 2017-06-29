@@ -16,6 +16,7 @@ The purpose of this project is to create an API that interacts with the Neo4J gr
 2. Reduce risks of getting trapped with vendors by constantly exploring and reviewing the IT space.
 3. Improve communication around innovation activities
 4. Learning lessons once (reduce redundant discovery costs)
+
 ![Radar](https://github.com/krhancoc/technology-radar/blob/master/static/images/radar.png)
 
 ## Feature Toggling
