@@ -1,5 +1,5 @@
 # Dynamic Technology Radar API 
-## An HTTP API Using Neo4J to drive the ThoughtWorks build-your-own-radar
+## A RESTful API Using Neo4J to drive the ThoughtWorks build-your-own-radar
 
 Contributor & Maintainer: [Kenneth R Hancock](https://github.com/krhancoc)  
 Contributor: [Mark Miller](https://github.com/momiller121)  
@@ -9,6 +9,7 @@ The project was created to be extend the technology radar and to facilitate part
 
 The purpose of this project is to create an API that interacts with the Neo4J graph database in relation to creating and building technology radars.  It increases the abilities of the Thoughtworks open source project [build-your-own-radar](https://github.com/thoughtworks/build-your-own-radar) by wrapping the project in its own API, this allows for a more fluid interaction with the radars.  The goal being to create a fully transparent Radar with one interface.
 
+![Radar](https://github.com/krhancoc/technology-radar/blob/master/static/images/radar.png)
 
 ## Feature Toggling
 
@@ -95,7 +96,7 @@ npm run dev
 
 ---
 
-##Outline of the Structure of the Database
+## Outline of the Structure of the Database
 
 Below I will outline the structure of the database that was created to fit the radar.  I wanted to explore graph databases which was the reason for choosing Neo4J.  Nodes will have some label, and also properties.  If you need more info on these definitions.  Please looks [here](https://neo4j.com/developer/guide-data-modeling/)
 
