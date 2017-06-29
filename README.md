@@ -4,6 +4,7 @@
 Contributor & Maintainer: [Kenneth R Hancock](https://github.com/krhancoc)  
 Contributor: [Mark Miller](https://github.com/momiller121)  
 
+[Blog on creation of the Radar and reasons for its creation](https://medium.com/@ryanhancock/extending-the-thoughtworks-technology-radar-46afabefc98b)
 
 The project was created to be extend the technology radar and to facilitate participation, transparency and communication. Mark Miller acted as my Product Owner and was an incredible mentor to have during the process of learning of Node and HapiJS.
 
