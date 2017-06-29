@@ -1,3 +1,4 @@
+# Note this is just a placeholder for now.  Docker currently not tested
 FROM node:latest
 
 # Create app directory
