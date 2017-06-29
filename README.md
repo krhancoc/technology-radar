@@ -1,5 +1,5 @@
 # Dynamic Technology Radar API 
-## An HTTP API Using Neo4J to drive the ThoughtWorks build-your-own-radar
+## A RESTful API Using Neo4J to drive the ThoughtWorks build-your-own-radar
 
 Contributor & Maintainer: [Kenneth R Hancock](https://github.com/krhancoc)  
 Contributor: [Mark Miller](https://github.com/momiller121)  
