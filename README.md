@@ -95,7 +95,7 @@ npm run dev
 
 ---
 
-##Outline of the Structure of the Database
+## Outline of the Structure of the Database
 
 Below I will outline the structure of the database that was created to fit the radar.  I wanted to explore graph databases which was the reason for choosing Neo4J.  Nodes will have some label, and also properties.  If you need more info on these definitions.  Please looks [here](https://neo4j.com/developer/guide-data-modeling/)
 
