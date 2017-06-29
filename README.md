@@ -6,10 +6,16 @@ Contributor: [Mark Miller](https://github.com/momiller121)
 
 [Blog on creation of the Radar and reasons for its creation](https://medium.com/@ryanhancock/extending-the-thoughtworks-technology-radar-46afabefc98b)
 
+
 The project was created to be extend the technology radar and to facilitate participation, transparency and communication. Mark Miller acted as my Product Owner and was an incredible mentor to have during the process of learning of Node and HapiJS.
 
-The purpose of this project is to create an API that interacts with the Neo4J graph database in relation to creating and building technology radars.  It increases the abilities of the Thoughtworks open source project [build-your-own-radar](https://github.com/thoughtworks/build-your-own-radar) by wrapping the project in its own API, this allows for a more fluid interaction with the radars.  The goal being to create a fully transparent Radar with one interface.
+The purpose of this project is to create an API that interacts with the Neo4J graph database in relation to creating and building technology radars.  It increases the abilities of the Thoughtworks open source project [build-your-own-radar](https://github.com/thoughtworks/build-your-own-radar) by wrapping the project in its own API, this allows for a more fluid interaction with the radars.  The goal being to create a fully transparent Radar with one interface, and allow for a platform IT professionals to converse about technologies coming into their IT space.
 
+### Why the need for this tool
+1. Increasing IT engagement
+2. Reduce risks of getting trapped with vendors by constantly exploring and reviewing the IT space.
+3. Improve communication around innovation activities
+4. Learning lessons once (reduce redundant discovery costs)
 ![Radar](https://github.com/krhancoc/technology-radar/blob/master/static/images/radar.png)
 
 ## Feature Toggling
