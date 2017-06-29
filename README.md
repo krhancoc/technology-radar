@@ -17,7 +17,7 @@ When starting the server you can easily turn features on and off using the /rada
 
 Feature toggling is apart of this project, features are tracked on requests by attaching cookies.  Current features that are toggleable are:
 * **Login** - By turning off will use a default authentication method.
-* **Profile** -- Turning on will allow for creation of blips, meetings, and publications through users profile screen.
+* **Profile** - Turning on will allow for creation of blips, meetings, and publications through users profile screen.
 
 ## Note Before Running:
 Please note that the application uses a .env file located on the server to pull things like the SALT used for creation of user hashes, the secret key use for decryption, and company name etc.  Your .env should look something like this:
@@ -98,7 +98,7 @@ npm run dev
 
 ## Outline of the Structure of the Database
 
-Below I will outline the structure of the database that was created to fit the radar.  I wanted to explore graph databases which was the reason for choosing Neo4J.  Nodes will have some label, and also properties.  If you need more info on these definitions.  Please looks [here](https://neo4j.com/developer/guide-data-modeling/)
+Below I will outline the structure of the database that was created to fit the radar.  I wanted to explore graph databases which was the reason for choosing Neo4J.  Nodes will have some label, and also properties.  If you need more info on these definitions.  Please look [here](https://neo4j.com/developer/guide-data-modeling/)
 
 ## Types of Nodes
 
@@ -186,6 +186,7 @@ Currently the only way of setting an admin is through the Neo4J console.  Throug
 `MATCH (n:PERSON) WHERE n.name = "SOME_USER" SET n.group = 'admin'`
 
 **Admin**: Able to create publications, and meetings
+
 
 ---
 
