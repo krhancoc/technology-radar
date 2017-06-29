@@ -9,6 +9,7 @@ The project was created to be extend the technology radar and to facilitate part
 
 The purpose of this project is to create an API that interacts with the Neo4J graph database in relation to creating and building technology radars.  It increases the abilities of the Thoughtworks open source project [build-your-own-radar](https://github.com/thoughtworks/build-your-own-radar) by wrapping the project in its own API, this allows for a more fluid interaction with the radars.  The goal being to create a fully transparent Radar with one interface.
 
+![Radar](https://github.com/krhancoc/technology-radar/blob/master/static/images/radar.png)
 
 ## Feature Toggling
 
