@@ -35,6 +35,8 @@ You can then just copy and paste that into your .env file
 
 ## To Add Scraped Data
 
+You will need to have the [APOC plugin](https://guides.neo4j.com/apoc) added to your plugins folder in NEO4J to load scraped data.
+
 Because of the nature of NEO4J, it allows you to pull in data through csv but only from a server.  I did this by starting up a server in the test_resources folder using the http-server library.  Do not use the local host ip 127.0.0.1.  The data was the initial scrape off the Thoughtworks website, so if you'd like to fill it with their data you can just use the following
 
 ```sh
